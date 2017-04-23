@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <!--输出到控制台-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--输出到文件-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>log/CommonSSM-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>15</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--输出到ELK平台-->
+    <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>192.168.2.34:4560</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" >
+            <customFields>
+                {"@appNmae":"PayPlatform"}
+            </customFields>
+        </encoder>
+    </appender>
+
+    <!--调试时可以解开注释开启其他组件的日志-->
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!--切片日志输出-->
+    <logger name="aop" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STASH"/>
+    </logger>
+
+</configuration>

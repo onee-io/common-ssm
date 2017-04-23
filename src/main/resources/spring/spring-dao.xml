@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--配置整合MyBatis-->
+    <!--配置数据库相关参数-->
+    <context:property-placeholder location="classpath:config/jdbc.properties" ignore-unresolvable="true"/>
+
+    <!--扫描DAO包（此句可以不加，MyBatis会自动扫描，加上此句防止IDEA报错）-->
+    <context:component-scan base-package="top.onee.ssm.dao.mapper"/>
+
+    <!--数据库连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!--基本属性-->
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+        <!--配置初始化大小、最小、最大-->
+        <property name="initialSize" value="${druid.initialSize}"/>
+        <property name="minIdle" value="${druid.minIdle}"/>
+        <property name="maxActive" value="${druid.maxActive}"/>
+
+        <!--配置获取连接等待超时时间-->
+        <property name="maxWait" value="${druid.maxWait}"/>
+
+        <!--配置间隔多久进行一次检测，检测需要关闭的空闲连接，单位时毫秒-->
+        <property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}"/>
+
+        <!--校验连接有效性-->
+        <property name="validationQuery" value="${druid.validationQuery}"/>
+        <property name="testWhileIdle" value="${druid.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${druid.testOnBorrow}"/>
+        <property name="testOnReturn" value="${druid.testOnReturn}"/>
+
+        <!--打开PSCache，并且指定每个连接上的PSCache的大小-->
+        <!--Oracle建议打开poolPreparedStatements，mysql可以设置为false，分库分表较多的数据库建议false-->
+        <property name="poolPreparedStatements" value="${druid.poolPreparedStatements}"/>
+        <!--<property name="maxPoolPreparedStatementPerConnectionSize" value="${druid.maxPoolPreparedStatementPerConnectionSize}"/>-->
+
+        <!--配置监控统计拦截的filters-->
+        <property name="filters" value="${druid.filters}"/>
+    </bean>
+
+    <!--配置SqlSessionFactory对象-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--MyBatis与Spring整合的配置-->
+        <!--注入数据库连接池-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--配置MyBatis全局配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!--扫描entity包，使用别名，多个用";"隔开-->
+        <property name="typeAliasesPackage" value="top.onee.ssm.entity"/>
+        <!--扫描sql配置文件：mapper需要的xml文件-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <!--配置扫描Dao接口包，动态实现DAO接口，注入到Spring容器-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--注入sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!--给出需要扫描的DAO接口-->
+        <property name="basePackage" value="top.onee.ssm.dao.mapper"/>
+    </bean>
+
+</beans>

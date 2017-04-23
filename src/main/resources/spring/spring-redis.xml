@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--配置整合Redis-->
+    <context:property-placeholder location="classpath:config/redis.properties" ignore-unresolvable="true"/>
+
+    <context:component-scan base-package="top.onee.ssm.dao.cache"/>
+
+    <!--Redis连接池配置-->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!--最大连接数 默认8-->
+        <property name="maxTotal" value="${redis.pool.maxTotal}"/>
+        <!--最大空闲数 默认8-->
+        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+        <!--连接等待最大毫秒数 默认-1 -->
+        <property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}"/>
+        <!--获取连接时检查有效性 默认false-->
+        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}"/>
+        <!--检查返回给pool的实例有效性 默认false-->
+        <property name="testOnReturn" value="${redis.pool.testOnReturn}"/>
+    </bean>
+
+    <!--单例多机连接池-->
+    <bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool" scope="singleton">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig"/>
+        <constructor-arg name="shards">
+            <list>
+                <bean class="redis.clients.jedis.JedisShardInfo">
+                    <!--redis主机IP-->
+                    <constructor-arg name="host" value="${redis.host}"/>
+                    <!--端口 默认6379-->
+                    <constructor-arg name="port" value="${redis.port}"/>
+                    <!--超时毫秒数 默认2000-->
+                    <constructor-arg name="timeout" value="${redis.timeout}"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>

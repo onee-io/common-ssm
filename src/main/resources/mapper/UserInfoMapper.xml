@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.onee.ssm.dao.mapper.UserInfoMapper">
+
+    <!--不要用 resultClass 当返回参数，即使所有类属性名与数据库字段一一对应，也需要 定义-->
+    <!--反过来，每一个表也必然有一个与之对应。-->
+    <resultMap id="BaseResultMap" type="UserInfo">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="age" property="age" jdbcType="INTEGER" />
+        <result column="balance" property="balance" jdbcType="DECIMAL" />
+        <result column="is_vip" property="vip" jdbcType="TINYINT" />
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <!--定义字段列表，不要使用 * -->
+    <sql id="BaseColumnList">
+        id, user_name, age, balance, is_vip, gmt_create, gmt_modified
+    </sql>
+
+    <!--获取所有用户信息列表-->
+    <select id="listOfAllUserInfo" resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM user_info
+    </select>
+
+    <!--获取指定ID的用户信息-->
+    <select id="getUserInfoById" resultMap="BaseResultMap" parameterType="long">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM user_info
+        WHERE id = #{id}
+    </select>
+
+    <!--新增用户信息-->
+    <!--ignore作用为主键冲突时，忽略报错，此处用不到-->
+    <insert id="saveUserInfo" parameterType="UserInfo" keyProperty="id">
+        INSERT ignore INTO user_info(user_name, age, balance, is_vip, gmt_create, gmt_modified)
+        VALUES (#{userName}, #{age}, #{balance}, #{vip}, #{gmtCreate}, #{gmtModified})
+    </insert>
+
+    <!--更新用户信息-->
+    <!--应根据具体业务更新具体字段，此处只做示例，更新全部字段-->
+    <update id="updateUserInfo" parameterType="UserInfo">
+        UPDATE user_info
+        SET
+          user_name = #{userName},
+          age = #{age},
+          balance = #{balance},
+          is_vip = #{vip},
+          gmt_modified = #{gmtModified}
+        WHERE id = #{id}
+    </update>
+
+    <!--删除用户信息-->
+    <delete id="deleteUserInfoById" parameterType="long">
+        DELETE FROM user_info
+        WHERE id = #{id}
+    </delete>
+
+</mapper>
