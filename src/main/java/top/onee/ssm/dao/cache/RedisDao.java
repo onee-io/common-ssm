@@ -9,6 +9,8 @@ import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 import top.onee.ssm.common.CommonConsts;
 
+import java.util.List;
+
 /**
  * Redis DAO
  * Created by VOREVER on 23/04/2017.
@@ -26,13 +28,13 @@ public class RedisDao {
      * @param key
      * @return
      */
-    public Object get(String key) {
+    public <T>List get(String key, Class<T> clazz) {
         try {
             ShardedJedis jedis = shardedJedisPool.getResource();
             try {
                 // TODO: 目前采用解析JSON字符串形式，以后优化为反序列化对象形式
                 String objStr = jedis.get(key);
-                return JSON.parse(objStr);
+                return JSON.parseArray(objStr, clazz);
             } finally {
                 jedis.close();
             }

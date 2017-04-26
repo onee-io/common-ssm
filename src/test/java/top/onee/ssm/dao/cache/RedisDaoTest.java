@@ -36,9 +36,9 @@ public class RedisDaoTest {
         List<UserInfo> userInfos = userInfoMapper.listOfAllUserInfo();
         /*存入Redis*/
         String result = redisDao.put(CommonConsts.REDIS_KEY_TEST, userInfos);
-        Assert.assertEquals(result, "OK");
+        Assert.assertEquals("OK", result);
         /*从Redis中取出*/
-        List<UserInfo> redisUserInfos = (List<UserInfo>) redisDao.get(CommonConsts.REDIS_KEY_TEST);
+        List<UserInfo> redisUserInfos = redisDao.get(CommonConsts.REDIS_KEY_TEST, UserInfo.class);
         System.out.println(redisUserInfos);
     }
 
