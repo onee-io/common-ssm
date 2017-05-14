@@ -1,4 +1,4 @@
-package top.onee.ssm.web;
+package top.onee.ssm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

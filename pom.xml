@@ -28,7 +28,7 @@
         <jedis.version>2.8.2</jedis.version>
         <aspectj.version>1.8.10</aspectj.version>
         <protostuff.version>1.1.1</protostuff.version>
-        <pagehelper.version>3.7.5</pagehelper.version>
+        <pagehelper.version>5.0.0</pagehelper.version>
         <shiro.version>1.3.2</shiro.version>
         <zxing.version>3.2.1</zxing.version>
     </properties>

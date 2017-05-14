@@ -36,12 +36,17 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--支持浏览器跨域请求-->
+    <mvc:cors>
+        <mvc:mapping path="/**" allowed-methods="GET, POST, PUT, DELETE" />
+    </mvc:cors>
+
     <!--扫描web相关的controller-->
-    <context:component-scan base-package="top.onee.ssm.web"/>
+    <context:component-scan base-package="top.onee.ssm.controller"/>
 
     <!--扫描AOP包-->
-    <context:component-scan base-package="top.onee.ssm.expand.aop"/>
+    <!--<context:component-scan base-package="top.onee.ssm.expand.aop"/>-->
 
     <!-- 开启aop -->
-    <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>
+    <!--<aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>-->
 </beans>

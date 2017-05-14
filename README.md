@@ -22,6 +22,7 @@ CommonSSM/
 |   |── main/                       -- 源文件包
 |   |   |── java/top/onee/ssm/
 |   |   |   |-- common/             -- 存放公共类、公共常量等
+|   |   |   |-- controller/         -- 存放Controllrer
 |   |   |   |-- dao/                -- 存放DAO层接口类
 |   |   |   |-- dto/                -- 存放用于数据传输的类
 |   |   |   |-- entity/             -- 存放与数据表一一对应的实体类
@@ -30,8 +31,7 @@ CommonSSM/
 |   |   |   |   |-- enums/          -- 存放枚举类，如HTTP返回的状态码等
 |   |   |   |   |-- excepiton/      -- 存放自定义异常类
 |   |   |   |   └── util/           -- 存放自定义工具类
-|   |   |   |-- service/            -- 存放Service
-|   |   |   └── web/                -- 存放Controllrer
+|   |   |   └── service/            -- 存放Service
 |   |   |-- resources
 |   |   |   |-- config/             -- 存放配置文件，如JDBC、Redis等
 |   |   |   |-- mapper/             -- 存放DAO层接口实现文件
@@ -65,6 +65,6 @@ CommonSSM/
 - `jedis` 2.8.2         -- Redis客户端
 - `aspectj` 1.8.10      -- 支持切面
 - `protostuff` 1.1.1    -- 序列化工具
-- `pagehelper` 3.7.5    -- 分页插件
+- `pagehelper` 5.0.0    -- 分页插件
 - `shiro` 1.3.2         -- 权限控制
 - `zxing` 3.2.1         -- 二维码生成解析

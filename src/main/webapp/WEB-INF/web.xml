@@ -6,6 +6,33 @@
          metadata-complete="true">
     <!--修改Servlet版本为3.1-->
 
+    <!--spring 监听器-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/spring-*.xml</param-value>
+    </context-param>
+
+    <!--配置DispatcherServlet-->
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--配置SpringMVC需要的配置文件-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-mvc.xml</param-value>
+        </init-param>
+        <!--启动时加载-->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <!--默认匹配所有请求-->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
     <!--字符编码过滤器-->
     <filter>
         <filter-name>encodingFilter</filter-name>
@@ -23,21 +50,5 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-    <!--配置DispatcherServlet-->
-    <servlet>
-        <servlet-name>dispatcher</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <!--配置SpringMVC需要的配置文件-->
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring/spring-*.xml</param-value>
-        </init-param>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
-        <!--默认匹配所有请求-->
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
 
 </web-app>
