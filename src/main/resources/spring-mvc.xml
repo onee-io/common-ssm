@@ -45,8 +45,8 @@
     <context:component-scan base-package="top.onee.ssm.controller"/>
 
     <!--扫描AOP包-->
-    <!--<context:component-scan base-package="top.onee.ssm.expand.aop"/>-->
+    <context:component-scan base-package="top.onee.ssm.expand.aop"/>
 
     <!-- 开启aop -->
-    <!--<aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>-->
+    <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>
 </beans>

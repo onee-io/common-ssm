@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.onee.ssm.dao.mapper.UserInfoMapper;
-import top.onee.ssm.entity.UserInfo;
+import top.onee.ssm.modal.DO.UserInfo;
 import top.onee.ssm.service.CommonService;
 
 import java.util.ArrayList;

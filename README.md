@@ -25,7 +25,12 @@ CommonSSM/
 |   |   |   |-- controller/         -- 存放Controllrer
 |   |   |   |-- dao/                -- 存放DAO层接口类
 |   |   |   |-- dto/                -- 存放用于数据传输的类
-|   |   |   |-- entity/             -- 存放与数据表一一对应的实体类
+|   |   |   |-- modal/              -- 存放POJO类
+|   |   |   |   |-- BO/             -- 存放业务对象
+|   |   |   |   |-- DO/             -- 存放数据表一一对应的对象
+|   |   |   |   |-- DTO/            -- 存放数据传输对象
+|   |   |   |   |-- Query/          -- 存放数据查询对象
+|   |   |   |   └── VO/             -- 存放页面展示
 |   |   |   |-- expand/
 |   |   |   |   |-- aop/            -- 存放切面类
 |   |   |   |   |-- enums/          -- 存放枚举类，如HTTP返回的状态码等
@@ -35,6 +40,7 @@ CommonSSM/
 |   |   |-- resources
 |   |   |   |-- config/             -- 存放配置文件，如JDBC、Redis等
 |   |   |   |-- mapper/             -- 存放DAO层接口实现文件
+|   |   |   |-- mybatis-generator/  -- 存放自动生成实体类的工具
 |   |   |   └── spring/             -- 存放配置SpringContext的所有文件
 |   |   └── webapp/
 |   |       |-- resources
@@ -51,20 +57,3 @@ CommonSSM/
 |-- document/                       -- 存放项目相关文档
 └── pom.xml                         -- Maven依赖管理文件
 ```
-
-## 已集成框架
-
-- `spring` 4.3.5        -- Sring框架
-- `spring mvc` 4.3.5    -- 前端控制器
-- `logback` 1.1.8       -- 记录日志
-- `logstash` 4.9        -- 记录日志到ELK
-- `druid` 1.0.18        -- 数据库连接池
-- `mybatis` 3.4.0       -- ORM框架
-- `guava` 21.0          -- Google工具包
-- `fastjson` 1.2.10     -- JSON转换
-- `jedis` 2.8.2         -- Redis客户端
-- `aspectj` 1.8.10      -- 支持切面
-- `protostuff` 1.1.1    -- 序列化工具
-- `pagehelper` 5.0.0    -- 分页插件
-- `shiro` 1.3.2         -- 权限控制
-- `zxing` 3.2.1         -- 二维码生成解析

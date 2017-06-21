@@ -1,4 +1,4 @@
-package top.onee.ssm.dto;
+package top.onee.ssm.common;
 
 import top.onee.ssm.expand.enums.HttpStateEnum;
 

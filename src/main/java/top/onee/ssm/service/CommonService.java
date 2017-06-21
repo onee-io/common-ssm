@@ -1,6 +1,6 @@
 package top.onee.ssm.service;
 
-import top.onee.ssm.entity.UserInfo;
+import top.onee.ssm.modal.DO.UserInfo;
 
 import java.util.List;
 

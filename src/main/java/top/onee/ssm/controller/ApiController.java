@@ -2,9 +2,9 @@ package top.onee.ssm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.onee.ssm.dto.CommonResult;
-import top.onee.ssm.entity.UserInfo;
+import top.onee.ssm.common.CommonResult;
 import top.onee.ssm.expand.enums.HttpStateEnum;
+import top.onee.ssm.modal.DO.UserInfo;
 import top.onee.ssm.service.impl.CommonServiceImpl;
 
 import java.util.List;

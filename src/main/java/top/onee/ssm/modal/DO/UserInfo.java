@@ -1,4 +1,4 @@
-package top.onee.ssm.entity;
+package top.onee.ssm.modal.DO;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,19 +9,13 @@ import java.util.Date;
  */
 public class UserInfo {
 
-    private long id;
-
-    private String userName;
-
-    private int age;
-
-    private BigDecimal balance;
-
-    private boolean vip;
-
-    private Date gmtCreate;
-
-    private Date gmtModified;
+    private long id;                // 主键ID
+    private String userName;        // 用户名
+    private int age;                // 年龄
+    private BigDecimal balance;     // 余额
+    private boolean vip;            // 是否是VIP
+    private Date gmtCreate;         // 创建时间
+    private Date gmtModified;       // 修改时间
 
     public long getId() {
         return id;

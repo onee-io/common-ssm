@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import top.onee.ssm.entity.UserInfo;
+import top.onee.ssm.modal.DO.UserInfo;
 import top.onee.ssm.service.impl.CommonServiceImpl;
 
 import java.util.List;

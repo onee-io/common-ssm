@@ -1,7 +1,7 @@
 package top.onee.ssm.dao.mapper;
 
 import org.springframework.stereotype.Repository;
-import top.onee.ssm.entity.UserInfo;
+import top.onee.ssm.modal.DO.UserInfo;
 
 import java.util.List;
 

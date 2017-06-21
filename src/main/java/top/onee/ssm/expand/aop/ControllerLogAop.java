@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import top.onee.ssm.dto.CommonResult;
+import top.onee.ssm.common.CommonResult;
 import top.onee.ssm.expand.enums.HttpStateEnum;
 import top.onee.ssm.expand.exception.BadParamException;
 

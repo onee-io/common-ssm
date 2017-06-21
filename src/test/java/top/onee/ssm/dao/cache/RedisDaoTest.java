@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import top.onee.ssm.common.CommonConsts;
 import top.onee.ssm.dao.mapper.UserInfoMapper;
-import top.onee.ssm.entity.UserInfo;
+import top.onee.ssm.modal.DO.UserInfo;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class RedisDaoTest {
         String result = redisDao.put(CommonConsts.REDIS_KEY_TEST, userInfos);
         Assert.assertEquals("OK", result);
         /*从Redis中取出*/
-        List<UserInfo> redisUserInfos = redisDao.get(CommonConsts.REDIS_KEY_TEST, UserInfo.class);
+        List<UserInfo> redisUserInfos = redisDao.getList(CommonConsts.REDIS_KEY_TEST, UserInfo.class);
         System.out.println(redisUserInfos);
     }
 
